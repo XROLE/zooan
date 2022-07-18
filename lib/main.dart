@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zooan/app/core/di/service_locator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setUpServiceLocator();
   runApp(MyApp());
 }
 

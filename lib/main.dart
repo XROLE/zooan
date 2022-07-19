@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zooan/app/core/di/service_locator.dart';
-import 'package:zooan/presentation/landing_page.dart';
+import 'package:zooan/presentation/home.dart';
+import 'package:zooan/presentation/home_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,5 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

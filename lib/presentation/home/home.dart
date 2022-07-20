@@ -13,28 +13,119 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void initState() {
-    // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(
       model: HomeViewModel(sl<ZooAnimalService>()),
-      onModelReady: (model) => model.init(),
+      onModelReady: (model) => model.getAnimal(),
       builder: (context, model, _) => Scaffold(
         appBar: AppBar(
           title: Text('Zooan'),
         ),
         body: Container(
             padding: EdgeInsets.all(20),
-            child: Column(
-              children: List.generate(5, (i) => Text('I am a chosen one $i')),
-            )),
+            child: Column(children: [
+              Row(
+                children: [
+                  Text(
+                    'Name:',
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    model.animal?.name ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+              SizedBox(height: 5),
+              Row(
+                children: [
+                  Text(
+                    'Latin name:',
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    model.animal?.latinName ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+               SizedBox(height: 5),
+              Row(
+                children: [
+                  Text(
+                    'Animal Type:',
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    model.animal?.animalType ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Active time:',
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    model.animal?.activeTime ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Life span:',
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    model.animal?.lifespan ?? '',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              model.animal?.imageLink != null
+                  ? Container(
+                      height: 300,
+                      color: Colors.amberAccent,
+                      child: Image.network(
+                        model.animal?.imageLink,
+                      ),
+                    )
+                  : SizedBox(),
+             
+              SizedBox(height: 50),
+              InkWell(
+                onTap: model.isLoading
+                    ? () {}
+                    : () {
+                        model.getAnimal();
+                      },
+                child: Container(
+                  height: 60,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                  color: model.isLoading ? Colors.grey:  Colors.blue,
+borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: model.isLoading 
+                  ? CircularProgressIndicator(
+                    color: Colors.white,
+                    
+                  ) 
+                  :Text(
+                    'Next',
+                    style:
+                        TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ),
+              )
+            ])),
       ),
     );
   }

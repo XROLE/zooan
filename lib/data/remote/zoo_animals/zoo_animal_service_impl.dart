@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:zooan/app/core/client/http_client.dart';
 import 'package:zooan/app/core/endpoints/endpoints.dart';
 import 'package:zooan/data/remote/zoo_animals/zoo_animal_service.dart';
@@ -11,9 +12,9 @@ class ZooAnimalServiceImpl implements ZooAnimalService {
     try {
       String url = Endpoints.getOneRandomZooAnimal();
 
-      var res = await httpClient.get(url);
-      print('Hi this is the $res');
-      return ZooAnimalModel();
+      Response res = await httpClient.get(url);
+      print(res);
+      return ZooAnimalModel.fromJson(res.data);
     } catch (e) {
       print('An Error occured: $e');
     }

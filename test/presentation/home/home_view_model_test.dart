@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:zooan/app/core/client/http_client.dart';
 import 'package:zooan/data/remote/zoo_animals/zoo_animal_service.dart';
-import 'package:zooan/data/remote/zoo_animals/zoo_animal_service_impl.dart';
 import 'package:zooan/domain/models/zoo_animal_model.dart';
 import 'package:zooan/presentation/home/home_view_model.dart';
 

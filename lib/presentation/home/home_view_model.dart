@@ -22,7 +22,8 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void getAnimal() async {
+  Future<void> getAnimal() async {
+
     isLoading = true;
     animal = await zooAnimalService.getOneRandomZooAnimal();
     isLoading = false;
